@@ -1,6 +1,6 @@
 SERVICE_NAME=todo-dao
 DOCKER_NETWORK=esp_net
-DOCKER_IMAGE="endpoints-api-demo:1.0"
+DOCKER_IMAGE="gcr.io/upheld-coast-222303/endpoints-api-demo:1.0"
 
 # Create the docker network
 sudo docker network create --driver bridge $DOCKER_NETWORK
