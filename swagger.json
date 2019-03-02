@@ -1,0 +1,203 @@
+{
+    "host": "todo-dao.endpoints.upheld-coast-222303.cloud.goog",
+    "x-google-endpoints": {
+      "name": "todo-dao.endpoints.upheld-coast-222303.cloud.goog",
+      "target": "34.73.223.13"
+    },
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0", 
+        "description": "A simple TodoMVC API", 
+        "title": "TodoMVC API"
+    }, 
+    "paths": {
+        "/todos": {
+            "post": {
+                "tags": [
+                    "todos"
+                ], 
+                "operationId": "post_todo_list", 
+                "responses": {
+                    "201": {
+                        "description": "Success", 
+                        "schema": {
+                            "$ref": "#/definitions/Todo"
+                        }
+                    }
+                }, 
+                "parameters": [
+                    {
+                        "required": true, 
+                        "in": "body", 
+                        "name": "payload", 
+                        "schema": {
+                            "$ref": "#/definitions/Todo"
+                        }
+                    }, 
+                    {
+                        "description": "An optional fields mask", 
+                        "format": "mask", 
+                        "type": "string", 
+                        "name": "X-Fields", 
+                        "in": "header"
+                    }
+                ], 
+                "summary": "Create a new task"
+            }, 
+            "get": {
+                "tags": [
+                    "todos"
+                ], 
+                "operationId": "get_todo_list", 
+                "responses": {
+                    "200": {
+                        "description": "Success", 
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Todo"
+                            }, 
+                            "type": "array"
+                        }
+                    }
+                }, 
+                "parameters": [
+                    {
+                        "description": "An optional fields mask", 
+                        "format": "mask", 
+                        "type": "string", 
+                        "name": "X-Fields", 
+                        "in": "header"
+                    }
+                ], 
+                "summary": "List all tasks"
+            }
+        }, 
+        "/todos/{id}": {
+            "put": {
+                "tags": [
+                    "todos"
+                ], 
+                "operationId": "put_todo", 
+                "responses": {
+                    "200": {
+                        "description": "Success", 
+                        "schema": {
+                            "$ref": "#/definitions/Todo"
+                        }
+                    }, 
+                    "404": {
+                        "description": "Todo not found"
+                    }
+                }, 
+                "parameters": [
+                    {
+                        "required": true, 
+                        "in": "body", 
+                        "name": "payload", 
+                        "schema": {
+                            "$ref": "#/definitions/Todo"
+                        }
+                    }, 
+                    {
+                        "description": "An optional fields mask", 
+                        "format": "mask", 
+                        "type": "string", 
+                        "name": "X-Fields", 
+                        "in": "header"
+                    }
+                ], 
+                "summary": "Update a task given its identifier"
+            }, 
+            "delete": {
+                "operationId": "delete_todo", 
+                "responses": {
+                    "204": {
+                        "description": "Todo deleted"
+                    }, 
+                    "404": {
+                        "description": "Todo not found"
+                    }
+                }, 
+                "tags": [
+                    "todos"
+                ], 
+                "summary": "Delete a task given its identifier"
+            }, 
+            "parameters": [
+                {
+                    "required": true, 
+                    "type": "integer", 
+                    "description": "The task identifier", 
+                    "name": "id", 
+                    "in": "path"
+                }
+            ], 
+            "get": {
+                "tags": [
+                    "todos"
+                ], 
+                "operationId": "get_todo", 
+                "responses": {
+                    "200": {
+                        "description": "Success", 
+                        "schema": {
+                            "$ref": "#/definitions/Todo"
+                        }
+                    }, 
+                    "404": {
+                        "description": "Todo not found"
+                    }
+                }, 
+                "parameters": [
+                    {
+                        "description": "An optional fields mask", 
+                        "format": "mask", 
+                        "type": "string", 
+                        "name": "X-Fields", 
+                        "in": "header"
+                    }
+                ], 
+                "summary": "Fetch a given resource"
+            }
+        }
+    }, 
+    "responses": {
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }, 
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        }
+    }, 
+    "tags": [
+        {
+            "name": "todos", 
+            "description": "TODO operations"
+        }
+    ], 
+    "basePath": "/", 
+    "produces": [
+        "application/json"
+    ], 
+    "definitions": {
+        "Todo": {
+            "required": [
+                "task"
+            ], 
+            "type": "object", 
+            "properties": {
+                "task": {
+                    "type": "string", 
+                    "description": "The task details"
+                }, 
+                "id": {
+                    "type": "integer", 
+                    "description": "The task unique identifier"
+                }
+            }
+        }
+    }, 
+    "consumes": [
+        "application/json"
+    ]
+}
