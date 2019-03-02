@@ -1,4 +1,4 @@
-FROM python2:alpine
+FROM gcr.io/google-appengine/python
 
 WORKDIR /app
 
